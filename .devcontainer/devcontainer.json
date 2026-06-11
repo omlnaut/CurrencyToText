@@ -1,0 +1,9 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/dotnet:10.0",
+	"features": {
+		"ghcr.io/devcontainers/features/node:2": {
+			"version": "20",
+			"npmVersion": "10.8.0"
+		}
+	}
+}
