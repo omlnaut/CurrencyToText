@@ -10,7 +10,7 @@ Create web app that lets users enter a number and chose a language. Return the n
 - The separator between dollars and cents is a ‘,’ (comma).
 
 #### Non-functional
-- asp.net backend
+- asp.net backend (.net 10)
 - react frontend
 - conversion implemented server-side
 
