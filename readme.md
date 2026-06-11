@@ -17,3 +17,28 @@ Create web app that lets users enter a number and chose a language. Return the n
 #### assumptions
 - no negative numbers
 - no authx
+
+
+# Steps
+
+- setup devcontainer
+- basic architecture setup
+	- asp.net api
+	- react app
+	- test: app can talk to api
+- showcase setup
+	- docker-compose for spinning up both api+app
+	- test: app can talk to api
+- api
+	- conversion logic
+		- find unittest cases
+	- endpoint
+		- validation
+  	- global error handling
+
+- app
+	- react html base
+	- validation
+	- api types
+	- api interaction
+	- css
