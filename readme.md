@@ -18,6 +18,9 @@ Create web app that lets users enter a number and chose a language. Return the n
 - no negative numbers
 - no authx
 
+## Decisions
+- drop https since we only demo locally?
+
 
 # Steps
 
