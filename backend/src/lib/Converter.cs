@@ -4,12 +4,28 @@ public static class Converter
 {
     public static string ToCurrency(decimal number)
     {
+        if (number == 0)
+            return "zero dollars";
         // validate
         // - range
         // - either 0 or 2 decimal digits
-        var thousand = (int)number % 1000;
-        var converted = ConvertBelow1000(thousand);
-        return converted + (number == 1 ? " dollar" : " dollars");
+
+        var parts = new List<string>();
+        var (remainder, firstTriplet) = Math.DivRem((int)number, 1000);
+        if (firstTriplet > 0)
+            parts.Add(ConvertBelow1000(firstTriplet));
+
+        if (remainder > 0)
+        {
+            (remainder, var secondTriplet) = Math.DivRem(remainder, 1000);
+            if (secondTriplet > 0)
+                parts.Add($"{ConvertBelow1000(secondTriplet)} thousand");
+        }
+
+        parts.Reverse();
+        var numberStr = string.Join(" ", parts);
+
+        return numberStr + (number == 1 ? " dollar" : " dollars");
     }
 
     private static string ConvertBelow1000(int number)
