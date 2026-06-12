@@ -18,5 +18,5 @@
     }
   },
   "runArgs": ["--env-file", ".env"],
-  "postCreateCommand": "dotnet tool install csharpier"
+  "postCreateCommand": "dotnet tool install csharpier -g"
 }
