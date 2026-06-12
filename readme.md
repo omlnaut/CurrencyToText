@@ -23,11 +23,12 @@ Create web app that lets users enter a number and chose a language. Return the n
 - no negative numbers
 - no authx
 
-## Decisions
+## Simplifications
 
-- local demo only, so we drop for simplicity (would be handled via gateway in production setting)
+- local demo only, so we drop (would be handled via gateway in production setting)
   - cors (wildcard cors)
   - https
+- backend: solution setup with multiple projects. One endpoint + one 'business logic' function can go into the same project.
 
 # Steps
 
@@ -36,15 +37,15 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] asp.net api
   - [x] react app
   - [x] test: app can talk to api
-- showcase setup
-  - docker-compose for spinning up both api+app
-  - test: app can talk to api
 - api
   - conversion logic
     - find unittest cases
   - endpoint
     - validation
     - global error handling
+- showcase setup
+  - docker-compose for spinning up both api+app
+  - test: app can talk to api
 
 - app
   - react html base
