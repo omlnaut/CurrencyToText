@@ -5,7 +5,7 @@ public static class Converter
     public static string ToCurrency(decimal number)
     {
         if (number == 0)
-            return "zero dollars";
+            return $"{SpecialNumbers[0]} dollars";
         // validate
         // - range
         // - either 0 or 2 decimal digits
@@ -20,6 +20,9 @@ public static class Converter
             (remainder, var secondTriplet) = Math.DivRem(remainder, 1000);
             if (secondTriplet > 0)
                 parts.Add($"{ConvertBelow1000(secondTriplet)} thousand");
+
+            if (remainder > 0)
+                parts.Add($"{ConvertBelow1000(remainder)} million");
         }
 
         parts.Reverse();
@@ -86,7 +89,7 @@ public static class Converter
         {
             { 2, "twenty" },
             { 3, "thirty" },
-            { 4, "fourty" },
+            { 4, "forty" },
             { 5, "fifty" },
             { 6, "sixty" },
             { 7, "seventy" },

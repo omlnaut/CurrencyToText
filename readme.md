@@ -39,7 +39,10 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] test: app can talk to api
 - api
   - conversion logic
-    - find unittest cases
+    - english
+      - [x] whole numbers
+      - fractions
+    - german
   - endpoint
     - validation
     - global error handling

@@ -18,7 +18,7 @@ public class Tests
     [TestCase(20, "twenty dollars")]
     [TestCase(21, "twenty-one dollars")]
     [TestCase(32, "thirty-two dollars")]
-    [TestCase(43, "fourty-three dollars")]
+    [TestCase(43, "forty-three dollars")]
     [TestCase(54, "fifty-four dollars")]
     [TestCase(65, "sixty-five dollars")]
     [TestCase(76, "seventy-six dollars")]
@@ -48,11 +48,27 @@ public class Tests
         Assert.That(actual, Is.EqualTo(target));
     }
 
+    [TestCase(1_000_000, "one million dollars")]
+    [TestCase(100_000_001, "one hundred million one dollars")]
+    [TestCase(
+        894_124_506,
+        "eight hundred ninety-four million one hundred twenty-four thousand five hundred six dollars"
+    )]
+    [TestCase(
+        998_385_200,
+        "nine hundred ninety-eight million three hundred eighty-five thousand two hundred dollars"
+    )]
+    public void FullRangeConversions(decimal number, string target)
+    {
+        string actual = Converter.ToCurrency(number);
+        Assert.That(actual, Is.EqualTo(target));
+    }
+
     [TestCase(0, "zero dollars")]
     [TestCase(1, "one dollar")]
     [TestCase(25.1, "twenty-five dollars and ten cents")]
     [TestCase(0.01, "zero dollars and one cent")]
-    [TestCase(45_100, "forty - five thousand one hundred dollars")]
+    [TestCase(45_100, "forty-five thousand one hundred dollars")]
     [TestCase(
         999_999_999.99,
         "nine hundred ninety - nine million nine hundred ninety -nine thousand nine hundred"
