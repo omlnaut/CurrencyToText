@@ -6,6 +6,17 @@ public class Tests
 {
     [TestCase(0, "zero dollars")]
     [TestCase(1, "one dollar")]
+    [TestCase(9, "nine dollars")]
+    [TestCase(11, "eleven dollars")]
+    [TestCase(12, "twelve dollars")]
+    [TestCase(15, "fifteen dollars")]
+    public void SpecialConversions(decimal number, string target)
+    {
+        Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
+    }
+
+    [TestCase(0, "zero dollars")]
+    [TestCase(1, "one dollar")]
     [TestCase(25.1, "twenty-five dollars and ten cents")]
     [TestCase(0.01, "zero dollars and one cent")]
     [TestCase(45_100, "forty - five thousand one hundred dollars")]
@@ -14,4 +25,5 @@ public class Tests
     {
         Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
     }
+
 }
