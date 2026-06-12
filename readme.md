@@ -35,7 +35,7 @@ Create web app that lets users enter a number and chose a language. Return the n
 - basic architecture setup
   - [x] asp.net api
   - [x] react app
-  - test: app can talk to api
+  - [x] test: app can talk to api
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api

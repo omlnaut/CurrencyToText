@@ -8,6 +8,11 @@ function App() {
     async function callApi() {
       const urlBase = import.meta.env.VITE_API_BASE;
       const preResponse = await fetch(`${urlBase}/weatherforecast`);
+      if (!preResponse.ok) {
+        setResponse("Error fetching from api.");
+        return;
+      }
+
       const response = await preResponse.json();
 
       setResponse(JSON.stringify(response));
