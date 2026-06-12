@@ -24,9 +24,9 @@ Create web app that lets users enter a number and chose a language. Return the n
 
 # Steps
 
-- setup devcontainer
+- [x] setup devcontainer
 - basic architecture setup
-	- asp.net api
+	- [x] asp.net api
 	- react app
 	- test: app can talk to api
 - showcase setup
