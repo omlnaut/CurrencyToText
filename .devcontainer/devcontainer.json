@@ -10,7 +10,9 @@
 		"vscode": {
 			"extensions": [
 				"GitHub.vscode-pull-request-github",
-				"ms-dotnettools.csdevkit"
+				"ms-dotnettools.csdevkit",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode"
 			]
 		}
 	}
