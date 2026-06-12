@@ -6,7 +6,8 @@ function App() {
 
   useEffect(() => {
     async function callApi() {
-      const preResponse = await fetch("http://localhost:5196/weatherforecast");
+      const urlBase = import.meta.env.VITE_API_BASE;
+      const preResponse = await fetch(`${urlBase}/weatherforecast`);
       const response = await preResponse.json();
 
       setResponse(JSON.stringify(response));
