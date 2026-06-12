@@ -7,9 +7,24 @@ public static class Converter
         // validate
         // - range
         // - either 0 or 2 decimal digits
-        var hundreds = (int)number % 100;
-        var converted = ConvertBelow100(hundreds);
+        var thousand = (int)number % 1000;
+        var converted = ConvertBelow1000(thousand);
         return converted + (number == 1 ? " dollar" : " dollars");
+    }
+
+    private static string ConvertBelow1000(int number)
+    {
+        var (hundred, belowHundred) = Math.DivRem(number, 100);
+
+        var belowHundredStr = ConvertBelow100(belowHundred);
+        if (hundred == 0)
+            return belowHundredStr;
+
+        var hundredStr = $"{SpecialNumbers[hundred]} hundred";
+        if (belowHundred == 0)
+            return hundredStr;
+
+        return string.Join(" ", hundredStr, belowHundredStr);
     }
 
     private static string ConvertBelow100(int number)

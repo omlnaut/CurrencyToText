@@ -30,6 +30,15 @@ public class Tests
         Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
     }
 
+    [TestCase(100, "one hundred dollars")]
+    [TestCase(156, "one hundred fifty-six dollars")]
+    [TestCase(227, "two hundred twenty-seven dollars")]
+    public void Sub1000Conversions(decimal number, string target)
+    {
+        string actual = Converter.ToCurrency(number);
+        Assert.That(actual, Is.EqualTo(target));
+    }
+
     [TestCase(0, "zero dollars")]
     [TestCase(1, "one dollar")]
     [TestCase(25.1, "twenty-five dollars and ten cents")]
