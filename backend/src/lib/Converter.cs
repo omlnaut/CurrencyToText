@@ -2,13 +2,38 @@ namespace backend.lib;
 
 public static class Converter
 {
+    /// <summary>
+    /// Interprets given number as dollars and cents,
+    /// then converts into written-word representation in english.
+    /// </summary>
+    /// <param name="number">Accepted range: [0, 999.999.999,99]</param>
+    /// <exception cref="ArgumentOutOfRangeException">When number is out of bounds</returns>
     public static string ToCurrency(decimal number)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(number, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(number, 999_999_999.99m);
+
+        var (dollars, cents) = Math.DivRem((long)(number * 100), 100);
+        var dollarStr = ConvertDollars((int)dollars);
+        if (cents == 0)
+            return dollarStr;
+
+        var centsStr = ConvertCents((int)cents);
+        return string.Join(" ", dollarStr, centsStr);
+    }
+
+    private static string ConvertCents(int cents)
+    {
+        if (cents == 1)
+            return "and one cent";
+
+        return $"and {ConvertBelow100(cents)} cents";
+    }
+
+    private static string ConvertDollars(int number)
     {
         if (number == 0)
             return $"{SpecialNumbers[0]} dollars";
-        // validate
-        // - range
-        // - either 0 or 2 decimal digits
 
         var parts = new List<string>();
         var (remainder, firstTriplet) = Math.DivRem((int)number, 1000);

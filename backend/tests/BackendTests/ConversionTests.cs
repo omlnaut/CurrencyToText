@@ -1,4 +1,5 @@
 ﻿using backend.lib;
+using NUnit.Framework;
 
 namespace BackendTests;
 
@@ -71,10 +72,18 @@ public class Tests
     [TestCase(45_100, "forty-five thousand one hundred dollars")]
     [TestCase(
         999_999_999.99,
-        "nine hundred ninety - nine million nine hundred ninety -nine thousand nine hundred"
+        "nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine dollars and ninety-nine cents"
     )]
     public void ExamplesFromTask(decimal number, string target)
     {
         Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
+    }
+
+    [TestCase(-1)]
+    [TestCase(1000000000)]
+    [TestCase(999_999_999.991)]
+    public void OutOfRange(decimal number)
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => Converter.ToCurrency(number));
     }
 }
