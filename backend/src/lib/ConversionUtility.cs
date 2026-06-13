@@ -15,7 +15,7 @@ public static class ConversionUtility
     }
 
     /// <summary>
-    /// number>=0
+    /// number>=0. Returns groups starting with lowest, i.e. 123_456 -> [456,123]
     /// </summary>
     /// <param name="number"></param>
     /// <returns></returns>
@@ -29,7 +29,6 @@ public static class ConversionUtility
             parts.Add(group);
         } while (number > 0);
 
-        parts.Reverse();
         return [.. parts];
     }
 }

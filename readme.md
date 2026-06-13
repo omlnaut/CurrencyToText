@@ -29,6 +29,7 @@ Create web app that lets users enter a number and chose a language. Return the n
   - cors (wildcard cors)
   - https
 - backend: solution setup with multiple projects. One endpoint + one 'business logic' function can go into the same project.
+- sign-safety in backend utility functions
 
 # Steps
 
@@ -49,7 +50,7 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] api interaction
   - [x] validation
 - german conversion logic
-  - refactor english
+  - [x] refactor english
   - implement german
 - app
   - language selection

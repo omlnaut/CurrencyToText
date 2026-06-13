@@ -1,4 +1,3 @@
-using System.Globalization;
 using backend.lib;
 using NUnit.Framework;
 
@@ -21,8 +20,8 @@ public class ConversionUtilityTests
     }
 
     [TestCase(123, new int[] { 123 })]
-    [TestCase(4_123, new int[] { 4, 123 })]
-    [TestCase(5_000_123, new int[] { 5, 0, 123 })]
+    [TestCase(4_123, new int[] { 123, 4 })]
+    [TestCase(5_000_123, new int[] { 123, 0, 5 })]
     public void TestGroupByThousands(int number, int[] expected)
     {
         var actual = ConversionUtility.GroupByThousands(number);

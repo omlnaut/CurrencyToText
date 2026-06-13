@@ -38,18 +38,21 @@ public static class Converter
             return $"{SpecialNumbers[1]} {Words.MainCurrencySingular}";
 
         var parts = new List<string>();
-        var (remainder, firstTriplet) = Math.DivRem(number, 1000);
-        if (firstTriplet > 0)
-            parts.Add(ConvertBelow1000(firstTriplet));
-
-        if (remainder > 0)
+        var groups = ConversionUtility.GroupByThousands(number);
+        foreach (var (group, suffix) in groups.Zip(Words.Suffixes))
         {
-            (remainder, var secondTriplet) = Math.DivRem(remainder, 1000);
-            if (secondTriplet > 0)
-                parts.Add($"{ConvertBelow1000(secondTriplet)} thousand");
+            if (group == 0)
+                continue;
 
-            if (remainder > 0)
-                parts.Add($"{ConvertBelow1000(remainder)} million");
+            var groupStr = ConvertBelow1000(group);
+            if (string.IsNullOrEmpty(suffix))
+            {
+                parts.Add(groupStr);
+            }
+            else
+            {
+                parts.Add($"{groupStr} {suffix}");
+            }
         }
 
         parts.Reverse();
@@ -66,7 +69,7 @@ public static class Converter
         if (hundred == 0)
             return belowHundredStr;
 
-        var hundredStr = $"{SpecialNumbers[hundred]} hundred";
+        var hundredStr = $"{SpecialNumbers[hundred]} {Words.Hundred}";
         if (belowHundred == 0)
             return hundredStr;
 
@@ -131,5 +134,7 @@ public static class Converter
         public static string MinorCurrencySingular => "cent";
         public static string MinorMainCurrencyPlural => "cents";
         public static string Join => "and";
+        public static string Hundred => "hundred";
+        public static string[] Suffixes => ["", "thousand", "million"];
     }
 }
