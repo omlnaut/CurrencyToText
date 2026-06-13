@@ -43,15 +43,18 @@ Create web app that lets users enter a number and chose a language. Return the n
     - [x] fractions
   - [x] endpoint
     - [x] basic call
-- app
+- [x] app
   - [x] react html base
   - [x] api types
-  - api interaction
-  - css
-  - validation
+  - [x] api interaction
+  - [x] validation
 - german conversion logic
   - refactor english
   - implement german
+- app
+  - language selection
+  - css
+  - refactor make pretty(ish)
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api

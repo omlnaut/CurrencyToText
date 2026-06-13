@@ -1,15 +1,27 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import type { ConversionResponse } from "./types/conversion-response";
 
+interface FormElements extends HTMLFormControlsCollection {
+  numberInput: HTMLInputElement;
+}
+interface NumberFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
 function App() {
   const [response, setResponse] = useState("");
 
-  async function Convert() {
+  async function Convert(event: React.SubmitEvent<NumberFormElement>) {
+    event.preventDefault();
+    const numberStr = event.currentTarget.elements.numberInput.value;
+    const params = new URLSearchParams({ number: numberStr });
+
     const urlBase = import.meta.env.VITE_API_BASE;
     console.log(urlBase);
     try {
-      const preResponse = await fetch(`${urlBase}/Convert?number=123.45`);
+      const preResponse = await fetch(
+        `${urlBase}/Convert?${params.toString()}`,
+      );
 
       if (!preResponse.ok) {
         setResponse("Error fetching from api.");
@@ -28,10 +40,19 @@ function App() {
   }
   return (
     <div>
-      <input className="number-input"></input>
-      <button className="convert-button" onClick={Convert}>
-        Convert
-      </button>
+      <form method="post" onSubmit={Convert}>
+        <input
+          id="numberInput"
+          className="number-input"
+          type="number"
+          step={0.01}
+          min={0}
+          max={999999999.99}
+        ></input>
+        <button className="convert-button" type="submit">
+          Convert
+        </button>
+      </form>
       <div className="result-view">{response}</div>
     </div>
   );
