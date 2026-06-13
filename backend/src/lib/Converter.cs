@@ -34,6 +34,8 @@ public static class Converter
     {
         if (number == 0)
             return $"{SpecialNumbers[0]} {Words.MainCurrencyPlural}";
+        if (number == 1)
+            return $"{SpecialNumbers[1]} {Words.MainCurrencySingular}";
 
         var parts = new List<string>();
         var (remainder, firstTriplet) = Math.DivRem(number, 1000);
@@ -52,9 +54,8 @@ public static class Converter
 
         parts.Reverse();
         var numberStr = string.Join(" ", parts);
-        var currency = number == 1 ? Words.MainCurrencySingular : Words.MainCurrencyPlural;
 
-        return string.Join(" ", numberStr, currency);
+        return string.Join(" ", numberStr, Words.MainCurrencyPlural);
     }
 
     private static string ConvertBelow1000(int number)
