@@ -58,6 +58,7 @@ Create web app that lets users enter a number and chose a language. Return the n
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api
+- readme documentation
 - endpoint
   - error handling
   - validation
