@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace BackendTests;
 
 [TestFixture]
-public class Tests
+public class EnglishConverterTests
 {
     [TestCase(0, "zero dollars")]
     [TestCase(1, "one dollar")]
@@ -14,7 +14,7 @@ public class Tests
     [TestCase(15, "fifteen dollars")]
     public void SpecialConversions(decimal number, string target)
     {
-        Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
+        Assert.That(EnglishConverter.ToCurrency(number), Is.EqualTo(target));
     }
 
     [TestCase(20, "twenty dollars")]
@@ -29,7 +29,7 @@ public class Tests
     [TestCase(99, "ninety-nine dollars")]
     public void Sub100Conversions(decimal number, string target)
     {
-        Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
+        Assert.That(EnglishConverter.ToCurrency(number), Is.EqualTo(target));
     }
 
     [TestCase(100, "one hundred dollars")]
@@ -37,7 +37,7 @@ public class Tests
     [TestCase(227, "two hundred twenty-seven dollars")]
     public void Sub1000Conversions(decimal number, string target)
     {
-        string actual = Converter.ToCurrency(number);
+        string actual = EnglishConverter.ToCurrency(number);
         Assert.That(actual, Is.EqualTo(target));
     }
 
@@ -46,7 +46,7 @@ public class Tests
     [TestCase(385_200, "three hundred eighty-five thousand two hundred dollars")]
     public void Above1000Conversions(decimal number, string target)
     {
-        string actual = Converter.ToCurrency(number);
+        string actual = EnglishConverter.ToCurrency(number);
         Assert.That(actual, Is.EqualTo(target));
     }
 
@@ -62,7 +62,7 @@ public class Tests
     )]
     public void FullRangeConversions(decimal number, string target)
     {
-        string actual = Converter.ToCurrency(number);
+        string actual = EnglishConverter.ToCurrency(number);
         Assert.That(actual, Is.EqualTo(target));
     }
 
@@ -77,7 +77,7 @@ public class Tests
     )]
     public void ExamplesFromTask(decimal number, string target)
     {
-        Assert.That(Converter.ToCurrency(number), Is.EqualTo(target));
+        Assert.That(EnglishConverter.ToCurrency(number), Is.EqualTo(target));
     }
 
     [TestCase(-1)]
@@ -85,6 +85,6 @@ public class Tests
     [TestCase(999_999_999.991)]
     public void OutOfRange(decimal number)
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => Converter.ToCurrency(number));
+        Assert.Throws<ArgumentOutOfRangeException>(() => EnglishConverter.ToCurrency(number));
     }
 }

@@ -1,6 +1,6 @@
 namespace backend.lib;
 
-public static class Converter
+public static class EnglishConverter
 {
     /// <summary>
     /// Interprets given number as dollars and cents,
