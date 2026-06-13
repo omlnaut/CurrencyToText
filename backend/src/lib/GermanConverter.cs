@@ -40,7 +40,13 @@ public static class GermanConverter
         if (number < 20)
             return SpecialNumbers[number];
 
-        return "";
+        var (ten, one) = Math.DivRem(number, 10);
+        var tenStr = Tens[ten];
+        if (one == 0)
+            return tenStr;
+
+        var oneStr = SpecialNumbers[one];
+        return $"{oneStr}{Words.Join}{tenStr}";
     }
 
     private static string[] SpecialNumbers =>
@@ -66,6 +72,19 @@ public static class GermanConverter
             "achtzehn",
             "neunzehn",
         ];
+
+    private static Dictionary<int, string> Tens =>
+        new()
+        {
+            { 2, "zwanzig" },
+            { 3, "dreißig" },
+            { 4, "vierzig" },
+            { 5, "fünfzig" },
+            { 6, "sechzig" },
+            { 7, "siebzig" },
+            { 8, "achtzig" },
+            { 9, "neunzig" },
+        };
 
     private static class Words
     {
