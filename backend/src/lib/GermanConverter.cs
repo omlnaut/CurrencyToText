@@ -17,6 +17,8 @@ public static class GermanConverter
         var groups = ConversionUtility.GroupByThousands(dollars);
         if (groups.Length == 1)
             return $"{ConvertBelow1000(groups[0])} {Words.MainCurrency}";
+        if (groups.Length == 2)
+            return $"{ConvertBelow1000(groups[1])}{Words.Thousand}{ConvertBelow1000(groups[0])} {Words.MainCurrency}";
         return "";
     }
 
