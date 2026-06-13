@@ -19,7 +19,27 @@ public static class GermanConverter
             return $"{ConvertBelow1000(groups[0])} {Words.MainCurrency}";
         if (groups.Length == 2)
             return $"{ConvertBelow1000(groups[1])}{Words.Thousand}{ConvertBelow1000(groups[0])} {Words.MainCurrency}";
+        if (groups.Length == 3)
+        {
+            if (groups[2] == 1)
+                return $"{Words.OneFeminine} {Words.MillionSingular} {ConvertBelow1Million(groups[1], groups[0])}";
+
+            return $"{ConvertBelow1000(groups[2])} {Words.MillionPlural} {ConvertBelow1Million(groups[1], groups[0])}";
+        }
         return "";
+    }
+
+    private static string ConvertBelow1Million(int largeGroup, int smallGroup)
+    {
+        return (largeGroup, smallGroup) switch
+        {
+            (0, > 0) => $"{ConvertBelow1000(smallGroup)} {Words.MainCurrency}",
+            (> 0, 0) => $"{ConvertBelow1000(largeGroup)}{Words.Thousand} {Words.MainCurrency}",
+            (> 0, > 0) =>
+                $"{ConvertBelow1000(largeGroup)}{Words.Thousand}{ConvertBelow1000(smallGroup)} {Words.MainCurrency}",
+            (0, 0) => $"{Words.MainCurrency}",
+            (_, _) => throw new ArgumentOutOfRangeException(),
+        };
     }
 
     private static string ConvertBelow1000(int number)
@@ -97,7 +117,6 @@ public static class GermanConverter
         public static string Thousand => "tausend";
         public static string MillionSingular => "Million";
         public static string MillionPlural => "Millionen";
-        public static string OneSingular => "ein";
-        public static string OnePlural => "eins";
+        public static string OneFeminine => "eine";
     }
 }
