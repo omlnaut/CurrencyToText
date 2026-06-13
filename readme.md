@@ -42,7 +42,7 @@ Create web app that lets users enter a number and chose a language. Return the n
     - [x] whole numbers
     - [x] fractions
   - endpoint
-    - validation
+    - [x] basic call
 - app
   - react html base
   - api types
@@ -55,6 +55,10 @@ Create web app that lets users enter a number and chose a language. Return the n
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api
+- endpoint
+  - error handling
+  - validation
+  - documentation
 
 #### maybe?
 
