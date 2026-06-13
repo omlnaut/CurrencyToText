@@ -13,30 +13,30 @@ public static class Converter
         ArgumentOutOfRangeException.ThrowIfLessThan(number, 0);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(number, 999_999_999.99m);
 
-        var (dollars, cents) = Math.DivRem((long)(number * 100), 100);
-        var dollarStr = ConvertDollars((int)dollars);
+        var (dollars, cents) = ConversionUtility.SplitOnDecimal(number);
+        var dollarStr = ConvertDollars(dollars);
         if (cents == 0)
             return dollarStr;
 
-        var centsStr = ConvertCents((int)cents);
+        var centsStr = ConvertCents(cents);
         return string.Join(" ", dollarStr, centsStr);
     }
 
     private static string ConvertCents(int cents)
     {
-        if (cents == 1)
-            return "and one cent";
+        var centsStr = ConvertBelow100(cents);
+        var currency = cents == 1 ? Words.MinorCurrencySingular : Words.MinorMainCurrencyPlural;
 
-        return $"and {ConvertBelow100(cents)} cents";
+        return $"{Words.Join} {centsStr} {currency}";
     }
 
     private static string ConvertDollars(int number)
     {
         if (number == 0)
-            return $"{SpecialNumbers[0]} dollars";
+            return $"{SpecialNumbers[0]} {Words.MainCurrencyPlural}";
 
         var parts = new List<string>();
-        var (remainder, firstTriplet) = Math.DivRem((int)number, 1000);
+        var (remainder, firstTriplet) = Math.DivRem(number, 1000);
         if (firstTriplet > 0)
             parts.Add(ConvertBelow1000(firstTriplet));
 
@@ -52,8 +52,9 @@ public static class Converter
 
         parts.Reverse();
         var numberStr = string.Join(" ", parts);
+        var currency = number == 1 ? Words.MainCurrencySingular : Words.MainCurrencyPlural;
 
-        return numberStr + (number == 1 ? " dollar" : " dollars");
+        return string.Join(" ", numberStr, currency);
     }
 
     private static string ConvertBelow1000(int number)
@@ -121,4 +122,13 @@ public static class Converter
             { 8, "eighty" },
             { 9, "ninety" },
         };
+
+    private static class Words
+    {
+        public static string MainCurrencySingular => "Dollar";
+        public static string MainCurrencyPlural => "Dollars";
+        public static string MinorCurrencySingular => "Cent";
+        public static string MinorMainCurrencyPlural => "Cents";
+        public static string Join => "and";
+    }
 }
