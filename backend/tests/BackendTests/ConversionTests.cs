@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace BackendTests;
 
+[TestFixture]
 public class Tests
 {
     [TestCase(0, "zero dollars")]
