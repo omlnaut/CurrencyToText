@@ -33,28 +33,32 @@ Create web app that lets users enter a number and chose a language. Return the n
 # Steps
 
 - [x] setup devcontainer
-- basic architecture setup
+- [x] basic architecture setup
   - [x] asp.net api
   - [x] react app
   - [x] test: app can talk to api
-- api
-  - english conversion logic
+- [x] api
+  - [x] english conversion logic
     - [x] whole numbers
     - [x] fractions
-  - endpoint
+  - [x] endpoint
     - [x] basic call
-- app
-  - react html base
-  - api types
-  - api interaction
-  - css
-  - validation
+- [x] app
+  - [x] react html base
+  - [x] api types
+  - [x] api interaction
+  - [x] validation
 - german conversion logic
   - refactor english
   - implement german
+- app
+  - language selection
+  - css
+  - refactor make pretty(ish)
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api
+- readme documentation
 - endpoint
   - error handling
   - validation
