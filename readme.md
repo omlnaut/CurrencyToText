@@ -33,19 +33,19 @@ Create web app that lets users enter a number and chose a language. Return the n
 # Steps
 
 - [x] setup devcontainer
-- basic architecture setup
+- [x] basic architecture setup
   - [x] asp.net api
   - [x] react app
   - [x] test: app can talk to api
-- api
-  - english conversion logic
+- [x] api
+  - [x] english conversion logic
     - [x] whole numbers
     - [x] fractions
-  - endpoint
+  - [x] endpoint
     - [x] basic call
 - app
-  - react html base
-  - api types
+  - [x] react html base
+  - [x] api types
   - api interaction
   - css
   - validation

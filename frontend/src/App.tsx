@@ -1,25 +1,40 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
+import type { ConversionResponse } from "./types/conversion-response";
 
 function App() {
   const [response, setResponse] = useState("");
 
-  useEffect(() => {
-    async function callApi() {
-      const urlBase = import.meta.env.VITE_API_BASE;
-      const preResponse = await fetch(`${urlBase}/weatherforecast`);
+  async function Convert() {
+    const urlBase = import.meta.env.VITE_API_BASE;
+    console.log(urlBase);
+    try {
+      const preResponse = await fetch(`${urlBase}/Convert?number=123.45`);
+
       if (!preResponse.ok) {
         setResponse("Error fetching from api.");
         return;
       }
 
-      const response = await preResponse.json();
+      const response: ConversionResponse = await preResponse.json();
 
-      setResponse(JSON.stringify(response));
+      console.log(JSON.stringify(response));
+
+      setResponse(response.convertedNumber);
+    } catch (error) {
+      setResponse("Api is not reachable.");
+      console.log(`Could not reach api, details: ${error}`);
     }
-    callApi();
-  }, []);
-  return <div>Api response: {response}</div>;
+  }
+  return (
+    <div>
+      <input className="number-input"></input>
+      <button className="convert-button" onClick={Convert}>
+        Convert
+      </button>
+      <div className="result-view">{response}</div>
+    </div>
+  );
 }
 
 export default App;
