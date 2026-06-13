@@ -125,10 +125,10 @@ public static class Converter
 
     private static class Words
     {
-        public static string MainCurrencySingular => "Dollar";
-        public static string MainCurrencyPlural => "Dollars";
-        public static string MinorCurrencySingular => "Cent";
-        public static string MinorMainCurrencyPlural => "Cents";
+        public static string MainCurrencySingular => "dollar";
+        public static string MainCurrencyPlural => "dollars";
+        public static string MinorCurrencySingular => "cent";
+        public static string MinorMainCurrencyPlural => "cents";
         public static string Join => "and";
     }
 }
