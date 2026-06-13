@@ -19,4 +19,14 @@ public class ConversionUtilityTests
         Assert.That(actualWhole, Is.EqualTo(whole));
         Assert.That(actualFraction, Is.EqualTo(fraction));
     }
+
+    [TestCase(123, new int[] { 123 })]
+    [TestCase(4_123, new int[] { 4, 123 })]
+    [TestCase(5_000_123, new int[] { 5, 0, 123 })]
+    public void TestGroupByThousands(int number, int[] expected)
+    {
+        var actual = ConversionUtility.GroupByThousands(number);
+
+        Assert.That(actual, Is.EquivalentTo(expected));
+    }
 }
