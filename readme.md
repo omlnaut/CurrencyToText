@@ -56,16 +56,16 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] language selection
   - [x] css
   - [x] refactor make pretty(ish)
-- showcase setup
-  - docker-compose for spinning up both api+app
+- [x] showcase setup
+  - [x] docker-compose for spinning up both api+app
 - readme documentation
 - endpoint
   - documentation
-  - validation
-- refactor german?
 
 #### maybe?
 
 - tests in pipeline
 - global exception handling in api
 - endpoint error handling
+- validation
+- refactor german?
