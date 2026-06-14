@@ -1,0 +1,20 @@
+# BASE
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
+EXPOSE 8080
+
+# BUILD
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+COPY "backend/src/backend.csproj" .
+RUN dotnet restore "backend.csproj"
+
+COPY "backend/src/." .
+RUN dotnet publish "backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# HOST
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENTRYPOINT ["dotnet", "backend.dll"]
