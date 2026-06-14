@@ -4,6 +4,7 @@ import type { ConversionResponse } from "./types/conversion-response";
 
 interface FormElements extends HTMLFormControlsCollection {
   numberInput: HTMLInputElement;
+  languageSelect: HTMLSelectElement;
 }
 interface NumberFormElement extends HTMLFormElement {
   readonly elements: FormElements;
@@ -14,9 +15,10 @@ function App() {
   async function Convert(event: React.SubmitEvent<NumberFormElement>) {
     event.preventDefault();
     const numberStr = event.currentTarget.elements.numberInput.value;
+    const languageStr = event.currentTarget.elements.languageSelect.value;
     const params = new URLSearchParams({
       number: numberStr,
-      language: "english",
+      language: languageStr,
     });
 
     const urlBase = import.meta.env.VITE_API_BASE;
@@ -52,6 +54,10 @@ function App() {
           min={0}
           max={999999999.99}
         ></input>
+        <select id="languageSelect">
+          <option value="english">english</option>
+          <option value="german">german</option>
+        </select>
         <button className="convert-button" type="submit">
           Convert
         </button>
