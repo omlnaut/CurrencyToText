@@ -53,9 +53,9 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] refactor english
   - [x] implement german
 - app
-  - language selection
+  - [x] language selection
   - css
-  - refactor make pretty(ish)
+  - [x] refactor make pretty(ish)
 - showcase setup
   - docker-compose for spinning up both api+app
   - test: app can talk to api
@@ -63,6 +63,7 @@ Create web app that lets users enter a number and chose a language. Return the n
 - endpoint
   - validation
   - documentation
+- refactor german?
 
 #### maybe?
 

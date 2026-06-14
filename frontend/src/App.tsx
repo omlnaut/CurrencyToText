@@ -1,45 +1,29 @@
 import React, { useState } from "react";
 import "./App.css";
-import type { ConversionResponse } from "./types/conversion-response";
+import { ConversionLanguage, ConvertNumber } from "./Api";
+import { LanguageSelection } from "./components/LanguageSelection";
 
 interface FormElements extends HTMLFormControlsCollection {
   numberInput: HTMLInputElement;
+  languageSelect: HTMLSelectElement;
 }
 interface NumberFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
+const languages: Record<string, ConversionLanguage> = {
+  english: ConversionLanguage.English,
+  deutsch: ConversionLanguage.German,
+};
 function App() {
   const [response, setResponse] = useState("");
 
   async function Convert(event: React.SubmitEvent<NumberFormElement>) {
     event.preventDefault();
+
     const numberStr = event.currentTarget.elements.numberInput.value;
-    const params = new URLSearchParams({
-      number: numberStr,
-      language: "english",
-    });
+    const languageStr = event.currentTarget.elements.languageSelect.value;
 
-    const urlBase = import.meta.env.VITE_API_BASE;
-    console.log(urlBase);
-    try {
-      const preResponse = await fetch(
-        `${urlBase}/Convert?${params.toString()}`,
-      );
-
-      if (!preResponse.ok) {
-        setResponse("Error fetching from api.");
-        return;
-      }
-
-      const response: ConversionResponse = await preResponse.json();
-
-      console.log(JSON.stringify(response));
-
-      setResponse(response.convertedNumber);
-    } catch (error) {
-      setResponse("Api is not reachable.");
-      console.log(`Could not reach api, details: ${error}`);
-    }
+    setResponse(await ConvertNumber(numberStr, languages[languageStr]));
   }
   return (
     <div>
@@ -52,6 +36,9 @@ function App() {
           min={0}
           max={999999999.99}
         ></input>
+        <LanguageSelection
+          languages={Object.keys(languages)}
+        ></LanguageSelection>
         <button className="convert-button" type="submit">
           Convert
         </button>
