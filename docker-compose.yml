@@ -2,9 +2,21 @@ services:
   api:
     image: api-compose
     build:
-      context: .
-      dockerfile: docker/Dockerfile_api
+      context: ./backend/src
+      dockerfile: ../../docker/Dockerfile_api
     ports:
       - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
+  frontend:
+    image: frontend-compose
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile_frontend
+    depends_on:
+      - api
+    ports:
+      - "5174:5174"
+    environment:
+      - VITE_API_BASE=http://localhost:8080
