@@ -14,7 +14,10 @@ function App() {
   async function Convert(event: React.SubmitEvent<NumberFormElement>) {
     event.preventDefault();
     const numberStr = event.currentTarget.elements.numberInput.value;
-    const params = new URLSearchParams({ number: numberStr });
+    const params = new URLSearchParams({
+      number: numberStr,
+      language: "english",
+    });
 
     const urlBase = import.meta.env.VITE_API_BASE;
     console.log(urlBase);
