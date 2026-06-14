@@ -51,7 +51,7 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] validation
 - german conversion logic
   - [x] refactor english
-  - implement german
+  - [x] implement german
 - app
   - language selection
   - css
@@ -61,7 +61,6 @@ Create web app that lets users enter a number and chose a language. Return the n
   - test: app can talk to api
 - readme documentation
 - endpoint
-  - error handling
   - validation
   - documentation
 
@@ -69,3 +68,4 @@ Create web app that lets users enter a number and chose a language. Return the n
 
 - tests in pipeline
 - global exception handling in api
+- endpoint error handling
