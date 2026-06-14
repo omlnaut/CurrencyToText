@@ -49,20 +49,19 @@ Create web app that lets users enter a number and chose a language. Return the n
   - [x] api types
   - [x] api interaction
   - [x] validation
-- german conversion logic
+- [x] german conversion logic
   - [x] refactor english
   - [x] implement german
-- app
+- [x] app
   - [x] language selection
-  - css
+  - [x] css
   - [x] refactor make pretty(ish)
 - showcase setup
   - docker-compose for spinning up both api+app
-  - test: app can talk to api
 - readme documentation
 - endpoint
-  - validation
   - documentation
+  - validation
 - refactor german?
 
 #### maybe?
