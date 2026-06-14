@@ -4,10 +4,22 @@ public static class GermanConverter
 {
     public static string ToCurrency(decimal number)
     {
-        var (dollars, _) = ConversionUtility.SplitOnDecimal(number);
+        var (dollars, cents) = ConversionUtility.SplitOnDecimal(number);
 
         var dollarStr = ConvertDollars(dollars);
-        return dollarStr;
+        if (cents == 0)
+            return dollarStr;
+
+        var centsStr = ConvertCents(cents);
+
+        return $"{dollarStr} {centsStr}";
+    }
+
+    private static string ConvertCents(int cents)
+    {
+        var centsStr = ConvertBelow100(cents);
+
+        return $"{Words.Join} {centsStr} {Words.MinorCurrency}";
     }
 
     private static string ConvertDollars(int dollars)
