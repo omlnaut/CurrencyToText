@@ -4,6 +4,8 @@ public static class GermanConverter
 {
     public static string ToCurrency(decimal number)
     {
+        ArgumentOutOfRangeException.ThrowIfLessThan(number, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(number, 999_999_999.99m);
         var (dollars, cents) = ConversionUtility.SplitOnDecimal(number);
 
         var dollarStr = ConvertDollars(dollars);

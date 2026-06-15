@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using backend.lib;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,16 +13,26 @@ public enum ConversionLanguage
 
 public record ConversionResponse(string ConvertedNumber);
 
+public class ConversionRequest
+{
+    [Range(0, 999_999_999.99, ErrorMessage = "Number must be between 0 and 999,999,999.99")]
+    [JsonPropertyName("number")]
+    public decimal Number { get; init; }
+
+    [JsonPropertyName("language")]
+    public ConversionLanguage Language { get; init; }
+}
+
 [ApiController]
 public class ConversionController : ControllerBase
 {
     [HttpGet("Convert")]
-    public ActionResult<ConversionResponse> Convert(decimal number, ConversionLanguage language)
+    public ActionResult<ConversionResponse> Convert([FromQuery] ConversionRequest request)
     {
-        var words = language switch
+        var words = request.Language switch
         {
-            ConversionLanguage.ENGLISH => EnglishConverter.ToCurrency(number),
-            ConversionLanguage.GERMAN => GermanConverter.ToCurrency(number),
+            ConversionLanguage.ENGLISH => EnglishConverter.ToCurrency(request.Number),
+            ConversionLanguage.GERMAN => GermanConverter.ToCurrency(request.Number),
             _ => throw new NotImplementedException(),
         };
 
