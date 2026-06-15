@@ -21,6 +21,7 @@ AI is used in all kinds of websearch, this history is not included (i.e. ".net h
 - The maximum number of dollars is 999 999 999.
 - The maximum number of cents is 99.
 - The separator between dollars and cents is a ‘,’ (comma).
+- user can choose between english and german conversion language
 
 ### Non-functional
 
@@ -66,3 +67,8 @@ Simple one client - one server architecture.
 - backend: No need for full-blown clean-architecture with multiple projects. One endpoint + one 'business logic' function can go into the same project.
   - Static classes for conversion instead of common interface for a one-off project like this
 - production oriented api setup was dropped, i.e. global exception handling, running tests in ci/cd
+
+## Known limitations
+
+- frontend "deployment" in docker-compose file is not production ready
+- exceptions in backend would be passed through to the caller
