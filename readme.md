@@ -12,6 +12,8 @@ During the development, no integrated ai tools were used (code completion, agent
    Reason is that I'm rather new to frontend development, only having done a hobby project with react+typescript. All other parts of the frontend, i.e. form elements, api interaction, were all hand coded.
 2. Test cases for the german conversion logic. I created the test cases for the english converter by hand, but used gemini to create the german conversion tests from that.
 
+AI is used in all kinds of websearch, this history is not included (i.e. ".net how to reverse list", ...).
+
 ## Requirements
 
 ### Functional
