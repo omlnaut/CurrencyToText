@@ -2,6 +2,12 @@ namespace backend.lib;
 
 public static class GermanConverter
 {
+    /// <summary>
+    /// Convert number to german string representation, interpreted as dollars/cents.
+    /// </summary>
+    /// <param name="number">Accepted range: [0, 999.999.999,99]</param>
+    /// <exception cref="ArgumentOutOfRangeException">When number is out of bounds</returns>
+    /// <returns></returns>
     public static string ToCurrency(decimal number)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(number, 0);
